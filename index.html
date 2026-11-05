@@ -1,0 +1,2159 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="RYU JI EUN">
+	<meta name="Keywords" content="퍼블리셔,퍼블리셔,웹퍼블리싱,웹디자인,웹디자이너,코딩,코더,제이쿼리,jQuery,웹표준,반응형,웹문서최적화,미디어쿼리">
+	<meta name="Description" content="웹퍼블리셔 류지은 포트폴리오입니다.">
+	<title>RYU JI EUN PORTFOLIO</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+	<link rel="stylesheet" type="text/css" href="./css/aos.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./css/jquery.modal.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./css/content.css" media="all">
+	<script type="text/javascript" src="./js/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="./js/commonUI.js"></script>
+	<script type="text/javascript" src="./js/jquery.modal.min.js"></script>
+	<style>
+		/* 레이어 팝업 스크롤 설정 */
+		html.popup-open .blocker { overflow: hidden; }
+		#common-popup .pic { max-height: calc(100vh - 170px); max-height: calc(100dvh - 170px); overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+		#common-popup .pic img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+
+		/* 프로젝트 레이어 팝업 */
+		.pro-layer-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 9999; align-items: center; justify-content: center; }
+		.pro-layer-popup .popup-box { background: #fff; width: 90%; max-width: 1400px; max-height: 85vh; display: flex; flex-direction: column; border-radius: 12px; box-sizing: border-box; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; }
+		.pro-layer-popup .popup-header { display: flex; align-items: center; justify-content: space-between; padding: 25px 30px; border-bottom: 2px solid #eee; background: #fff; position: relative; z-index: 10; flex-shrink: 0; }
+		.pro-layer-popup .popup-header h3 { margin: 0; font-size: 24px; font-weight: 700; color: #111; padding-right: 40px; }
+		.pro-layer-popup .popup-con { padding: 30px; overflow-y: auto; flex-grow: 1; }
+		.pro-layer-popup .popup-con img { width: 100%; height: auto; display: block; margin: 0 auto 0px auto; border-radius: 8px; border: 1px solid #eee; }
+		.pro-layer-popup .popup-con .desc-text { background: #f8f9fa; margin:0 0 10px 0;padding: 20px; border-radius: 8px; border-left: 4px solid #333; font-size: 16px; line-height: 1.6; color: #555; }
+		.pro-layer-popup .btn-close { width: 38px; height: 38px; background: #111; color: #fff; font-size: 20px; font-weight: 500; border: none; cursor: pointer; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; flex-shrink: 0; }
+		.pro-layer-popup .btn-close:hover { background: #333; transform: scale(1.05); }
+		.pro-layer-popup .popup-con::-webkit-scrollbar { width: 8px; }
+		.pro-layer-popup .popup-con::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+		.pro-layer-popup .popup-con::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+
+
+		.popup-preview-wrap { width: 100%; max-width: 1600px; display: flex; flex-direction: column; gap: 40px; margin: 0 auto; align-items: center; }
+		.popup-preview-wrap .preview-section { width: 100%; max-width: 1400px; background: #ffffff; border-radius: 16px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 24px; }
+		.popup-preview-wrap .preview-section .section-desc h3 { font-size: 20px; color: #0f172a; margin-bottom: 8px; font-weight: 700; }
+		.popup-preview-wrap .preview-section .section-desc p { font-size: 14px; color: #475569; line-height: 1.6; }
+		.popup-preview-wrap .section-devices { display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start; justify-content: center; width: 100%; }
+		.popup-preview-wrap .device-box { background: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); overflow: hidden; border: 1px solid #e2e8f0; }
+		.popup-preview-wrap .pc-device { flex: 1; max-width: 100%; }
+		.popup-preview-wrap .pc-device .browser-top-bar { background: #f1f5f9; padding: 12px 18px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #e2e8f0; }
+		.popup-preview-wrap .pc-device .browser-top-bar .dot { width: 12px; height: 12px; border-radius: 50%; }
+		.popup-preview-wrap .pc-device .browser-top-bar .dot.red { background: #ff5f56; }
+		.popup-preview-wrap .pc-device .browser-top-bar .dot.yellow { background: #ffbd2e; }
+		.popup-preview-wrap .pc-device .browser-top-bar .dot.green { background: #27c93f; }
+		.popup-preview-wrap .pc-device .browser-title { margin-left: 10px; font-size: 13px; color: #64748b; font-weight: 600; }
+		.popup-preview-wrap .pc-device .pc-image-scroll-box { max-height: 700px; overflow-y: auto; background-color: #f8fafc; }
+		.popup-preview-wrap .pc-device .pc-image-scroll-box img { width: 100%; display: block; height: auto; }
+		.popup-preview-wrap .mobile-device { width: 340px; background: #0f172a; border-radius: 36px; padding: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+		.popup-preview-wrap .mobile-device .mobile-inner-screen { background: #ffffff; border-radius: 24px; overflow: hidden; height: 700px; display: flex; flex-direction: column; }
+		.popup-preview-wrap .mobile-device .mobile-image-scroll-box { flex-grow: 1; overflow-y: auto; height: 100%; background-color: #f8fafc; }
+		.popup-preview-wrap .mobile-device .mobile-image-scroll-box img { width: 100%; display: block; height: auto; }
+
+		.popup-preview-wrap .section-devices.wide-pc-devices { display: flex; gap: 24px; justify-content: center; align-items: stretch; width: 100%; }
+		.popup-preview-wrap .section-devices.wide-pc-devices .pc-device { flex: 1; width: 1200px; max-width: 100%; }
+
+		.popup-preview-wrap .section-devices.split-pc-devices { display: flex; gap: 24px; justify-content: space-between; align-items: stretch; width: 100%; }
+		.popup-preview-wrap .section-devices.split-pc-devices .pc-device { flex: 1; width: calc(50% - 12px); max-width: none; }
+		/* .popup-preview-wrap .pc-device .pc-image-scroll-box img { width: 100%; display: block; height: auto; transition: transform 0.3s ease; transform-origin: top left; }
+		.popup-preview-wrap .pc-device .pc-image-scroll-box:hover img { transform: scale(1.5); } */
+
+		.popup-preview-wrap .preview-section.alternate-section { display: flex; flex-direction: row; /* align-items: center;  */justify-content: space-between; gap: 50px; max-width: 1400px; }
+		.popup-preview-wrap .preview-section.alternate-section.reverse { flex-direction: row-reverse; }
+		.popup-preview-wrap .alternate-section .section-desc-side { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+		.popup-preview-wrap .alternate-section .section-device-side { flex: 1; width: 100%; display: flex; justify-content: center; }
+
+		.desc-feature-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+		.desc-feature-item { display: flex; align-items: flex-start; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px 16px; border-radius: 10px; }
+		.desc-feature-item div h4 { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+		.desc-feature-item div p { font-size: 13px; color: #475569; margin: 0; line-height: 1.5; }
+
+		@media (max-width: 1024px) {
+			.popup-preview-wrap .preview-section.alternate-section,
+			.popup-preview-wrap .preview-section.alternate-section.reverse { flex-direction: column; gap: 30px; padding: 24px; }
+		}
+
+		@media (max-width: 1200px) {
+			.popup-preview-wrap .section-devices.split-pc-devices {
+				flex-direction: column;
+				align-items: center;
+			}
+			.popup-preview-wrap .section-devices.split-pc-devices .pc-device {
+				width: 100%;
+				max-width: 860px;
+			}
+		}
+
+		.pc-image-scroll-box::-webkit-scrollbar,
+		.mobile-image-scroll-box::-webkit-scrollbar {
+			width: 8px; 
+			height: 8px;
+		}
+
+		.	x::-webkit-scrollbar-track,
+		.mobile-image-scroll-box::-webkit-scrollbar-track {
+			background: #f1f5f9; 
+			border-radius: 0 0 12px 0;
+		}
+
+		.pc-image-scroll-box::-webkit-scrollbar-thumb,
+		.mobile-image-scroll-box::-webkit-scrollbar-thumb {
+			background: #cbd5e1; 
+			border-radius: 4px;
+		}
+
+		.pc-image-scroll-box::-webkit-scrollbar-thumb:hover,
+		.mobile-image-scroll-box::-webkit-scrollbar-thumb:hover {
+			background: #94a3b8; 
+		}
+
+		.pc-image-scroll-box,
+		.mobile-image-scroll-box {
+			scrollbar-width: thin;
+			scrollbar-color: #cbd5e1 #f1f5f9;
+		}
+
+	</style>
+	<script>
+		// 팝업 열기
+		function openLayer(popupId) {
+			document.getElementById(popupId).style.display = 'flex';
+		}
+
+		// 팝업 닫기
+		function closeLayer(popupId) {
+			document.getElementById(popupId).style.display = 'none';
+		}
+	</script>
+<body>
+
+<div id="wrap"> 
+	
+	
+	<!-- <div id="header">
+		<div class="inner">
+			<h1>RYU JI EUN</h1>
+		</div>
+	</div>  -->
+
+	<!-- <div id="mainVisual">
+		<div class="inner">
+			<p>UI/UX Publishing Developer</p>
+			<p>구조(HTML) 와 표현(CSS)의 언어로 웹표준과 웹접근성을 지향하는 "퍼블리셔</p>
+			<p>Welcome to My Home !</p>
+		</div>
+	</div> -->
+
+
+
+	<!-- S T A R T :: containerArea -->
+	<div id="container">
+		<div class="section section-info">
+			<div class="content">
+				<p class="txt1">RYU JI EUN WEB PUBLISHER</p>
+				<p class="txt2"><span class="t1">PORT</span><span class="t2">FOLIO</span></p>
+				<p class="txt3">항상 원활한 협업을 끌어내려고 노력합니다. 의도를 이해하고 존중하며 함께 좋은 결과물을 만듭니다.</p>
+			</div>
+		</div>
+		<!-- :: ------------------------------------------------------------------------------------------------ :: -->
+
+
+		<div class="section section-vision">
+			<div class="content">
+				<!-- <h2>CORE VALUE & SKILL</h2> -->
+				<div class="section-heading">
+					<p class="section-kicker">CORE VALUE</p>
+					<h2>핵심 역량</h2>
+				</div>
+				
+				<div class="vision-list">
+					<div class="vision-item">
+						<div class="vision-header">유기적인 소통과 협업</div>
+						<div class="vision-body">
+							<div class="icon-box"><i class="fas fa-comments"></i></div>
+							<p class="desc">기획과 개발 사이의 의도를 정확히 파악하고 조율하여, 원활한 협업 프로세스를 만들어냅니다.</p>
+							<span class="keyword"># 커뮤니케이션</span>
+						</div>
+					</div>
+					<div class="vision-item">
+						<div class="vision-header">웹 표준 & 접근성 준수</div>
+						<div class="vision-body">
+							<div class="icon-box"><i class="fas fa-code"></i></div>
+							<p class="desc">누구나 차별 없이 이용할 수 있는 시맨틱 마크업으로 완성도 높은 디지털 서비스를 구축합니다.</p>
+							<span class="keyword"># 웹표준 · 접근성</span>
+						</div>
+					</div>
+					<div class="vision-item">
+						<div class="vision-header">트렌디한 기술 활용</div>
+						<div class="vision-body">
+							<div class="icon-box"><i class="fas fa-rocket"></i></div>
+							<p class="desc">최신 UI 트렌드와 AI 툴을 적극 활용하여 작업 생산성을 높이고 최적의 퍼포먼스를 냅니다.</p>
+							<span class="keyword"># 생산성 & 효율성</span>
+						</div>
+					</div>
+					<div class="vision-item">
+						<div class="vision-header">크로스 브라우징</div>
+						<div class="vision-body">
+							<div class="icon-box"><i class="fas fa-tasks-alt"></i></div>
+							<p class="desc">Chrome, Safari, Edge 등 다양한 최신 브라우저 및 모바일 환경에서 오차 없이 동일한 UI/UX를 제공합니다.</p>
+							<span class="keyword"># Cross Browsing</span>
+						</div>
+					</div>
+					<div class="vision-item">
+						<div class="vision-header">반응형 웹 & 모바일</div>
+						<div class="vision-body">
+							<div class="icon-box"><i class="fas fa-desktop"></i></div>
+							<p class="desc">Flexbox, Grid, Media Query를 활용해 디스플레이 환경에 최적화된 유연한 레이아웃을 구축합니다.</p>
+							<span class="keyword"># Responsive Web</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="section section-intro-copy">
+			<div class="content intro-copy">
+				<div class="section-heading">
+					<p class="section-kicker">HOW I WORK</p>
+					<h2>개발자와의 오랜 협업으로 쌓아온 퍼블리싱 역량</h2>
+					<p class="description">
+						화면을 설계하는 단계부터 마크업 구조와 컴포넌트의 재사용성, 필요한 UI 상태까지 함께 고민합니다.
+						<br>디자인 의도를 정확하게 구현하는 것은 물론, 유지보수와 확장성까지 고려한 퍼블리싱을 지향합니다.
+					</p>
+				</div>
+				
+				<div class="strength-box">
+					<p class="strength-title">이런 장점이 있어요!</p>
+					<ul>
+						<li>개발자와의 오랜 협업으로 실무 중심의 커뮤니케이션에 익숙해요.</li>
+						<li>웹 표준과 웹 접근성을 고려해 퍼블리싱해요.</li>
+						<li>기획·디자인·개발의 흐름을 이해하고 원활하게 소통해요.</li>
+						<li>구현 과정에서 발생하는 이슈를 함께 고민하고 해결해요.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section-career">
+			<div class="content">
+				<div class="section-heading">
+					<p class="section-kicker">CAREER PATH</p>
+					<h2>경력</h2>
+					<p class="description">다양한 경험을 바탕으로 더 나은 사용자 경험을 만들어 왔습니다.</p>
+				</div>
+				<div class="career-list">
+					<article class="career-item">
+						<div class="career-period">2022 — 현재</div>
+						<div class="career-detail">
+							<h3>웹 퍼블리셔 <span class="career-sample">샘플</span></h3>
+							<p class="career-company">회사명 또는 소속을 입력하세요</p>
+							<p class="career-summary">공공·기업 웹사이트 구축 및 운영, 반응형 UI 구현과 웹 접근성 개선</p>
+						</div>
+					</article>
+					<article class="career-item">
+						<div class="career-period">2017 — 2022</div>
+						<div class="career-detail">
+							<h3>웹 퍼블리셔 <span class="career-sample">샘플</span></h3>
+							<p class="career-company">회사명 또는 소속을 입력하세요</p>
+							<p class="career-summary">다양한 서비스의 화면 퍼블리싱, 디자인·개발 협업 및 유지보수</p>
+						</div>
+					</article>
+					<article class="career-item">
+						<div class="career-period">2012 — 2017</div>
+						<div class="career-detail">
+							<h3>웹 디자이너 / 퍼블리셔 <span class="career-sample">샘플</span></h3>
+							<p class="career-company">회사명 또는 소속을 입력하세요</p>
+							<p class="career-summary">웹사이트 제작과 운영을 통해 디자인 및 퍼블리싱 실무 경험 축적</p>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- <div class="section section-skill">
+			<h2>SKILL</h2>
+			<div class="content">
+				<dl>
+					<dt><i class="ico far fa-code"></i><span>웹 표준 & 접근성 (KRDS)</span></dt>
+					<dd>디지털 정부서비스 UI/UX 가이드라인(KRDS) 및 웹 접근성(WA) 지침을 준수하여 누구나 이용 가능한 시맨틱 마크업을 구조화합니다.</dd>
+				</dl>
+				<dl>
+					<dt><i class="ico fas fa-tasks-alt"></i><span>크로스 브라우징</span></dt>
+					<dd>Chrome, Safari, Edge, Firefox 등 다양한 최신 브라우저 및 모바일 환경에서 오차 없이 동일한 UI/UX를 제공합니다.</dd>
+				</dl>
+				<dl>
+					<dt><i class="ico fas fa-desktop"></i><span>반응형 웹 & 모바일</span></dt>
+					<dd>Flexbox, Grid, Media Query를 활용해 모바일, 태블릿, PC 등 디스플레이 환경에 최적화된 유연한 레이아웃을 구축합니다.</dd>
+				</dl>
+				<dl>
+					<dt><i class="ico fas fa-robot"></i><span>AI & VIBE CODING</span></dt>
+					<dd>ChatGPT, Cursor 등 AI 툴을 적극 활용하여 크로스 브라우징 교정, 퍼블리싱 생산성 및 개발 속도를 극대화합니다.</dd>
+				</dl>
+			</div>
+		</div> -->
+		<!-- //section -->
+
+		<!-- :: ------------------------------------------------------------------------------------------------ :: -->
+
+		<div class="section section-project">
+			<div class="content">
+				<div class="section-heading">
+					<p class="section-kicker">PORTFOLIO</p>
+					<h2>프로젝트</h2>
+				</div>
+				<div class="pro-list">
+
+					<div class="item" data-aos="zoom-in" onclick="openLayer('popup0')">
+						<div class="thumbnail"><div><img src="./img/nanumkorea.jpg" alt="nanumkorea"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">테스트</p>
+							<p class="project-tags"><span class="tag">#웹접근성</span><span class="tag">#반응형</span></p>
+						</div>
+					</div>
+					<div id="popup0" class="pro-layer-popup">
+						<div class="popup-box">
+							<div class="popup-header">
+								<h3>프로젝트</h3>
+								<button type="button" class="btn-close" onclick="closeLayer('popup0')">&times;</button>
+							</div>
+							
+							<div class="popup-con">
+								<div class="popup-preview-wrap">
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>화면페이지 (PC + 모바일)</h3>
+											<p>화면페이지설명입니다.</p>
+										</div>
+										<div class="section-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">화면아이디 // 페이지</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/myhealthway_01.png" alt="PC 화면 이미지">
+												</div>
+											</div>
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/myhealthway_01_m.png" alt="모바일 화면 이미지">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>화면페이지 (PC + PC)</h3>
+											<p>화면페이지설명입니다.</p>
+										</div>
+										<div class="section-devices split-pc-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">화면아이디 // 페이지</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/myhealthway_01.png" alt="PC 화면 이미지 A">
+												</div>
+											</div>
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">화면아이디 // 페이지</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/myhealthway_01.png" alt="PC 화면 이미지 B">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>화면페이지 (모바일 + 모바일)</h3>
+											<p>화면페이지설명입니다.</p>
+										</div>
+										<div class="section-devices">
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/myhealthway_01_m.png" alt="모바일 화면 1">
+													</div>
+												</div>
+											</div>
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/myhealthway_01_m.png" alt="모바일 화면 2">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="preview-section alternate-section">
+										<div class="section-desc-side">
+											<div class="section-desc">
+												<h3>메인 통합 관제 대시보드</h3>
+												<p>중앙 관제실 및 총괄 관리자를 위해 설계된 종합 대시보드 화면입니다. 전국 사업장 분포 현황을 지도상에 실시간으로 매핑하고, 민원(VoC) 추이 그래프, 긴급 알림 배너, 당일 점검 To-Do 위젯 및 사업장별 실시간 날씨 카드를 한눈에 파악할 수 있도록 4단 모듈식 그리드로 배치했습니다.</p>
+											</div>
+											<div class="desc-feature-list">
+												<div class="desc-feature-item">
+													<div>
+														<h4>GIS 기반 사업장 상태 매핑</h4>
+														<p>지역별 정상 가동률과 이상 징후 발생 센터를 핀포인트 컬러 코드로 직관화</p>
+													</div>
+												</div>
+												<div class="desc-feature-item">
+													<div>
+														<h4>VoC 추이 & To-Do 우선순위 큐</h4>
+														<p>일자별 접수량 변동 곡선과 지연 방지를 위한 D-day 기반 작업 큐 연동</p>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="section-device-side">
+											<div class="device-box pc-device" style="width: 100%;">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">ePMS Live Operational Control Hub</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/epms_01.png" alt="메인 통합 관제 대시보드">
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="preview-section alternate-section reverse">
+										<div class="section-desc-side">
+											<div class="section-desc">
+												<h3>고밀도 데이터 그리드 & 다중 필터</h3>
+												<p>수만 건에 이르는 시설 보수 내역 및 점검 이력을 지연 없이 조회하기 위한 엔터프라이즈 최적화 테이블 화면입니다. 상단에 10개 이상의 복합 조건 검색 셀과 날짜 범위 선택기를 집약하고, 컬럼 정렬, 고정 핀, 인라인 작업 상태 배지(승인대기, 진행중, 완료 등)를 적용하여 데이터 탐색 시간을 60% 단축했습니다.</p>
+											</div>
+											<div class="desc-feature-list">
+												<div class="desc-feature-item">
+													<div>
+														<h4>멀티 파라미터 퀵 서치</h4>
+														<p>사업소, 장비코드, 작업자, 중요도 키워드를 동시 필터링하는 조건 유지 엔진</p>
+													</div>
+												</div>
+												<div class="desc-feature-item">
+													<div>
+														<h4>초경량 13pt 고밀도 데이터 행</h4>
+														<p>스크롤 없이 한 화면에서 25행 이상의 이력을 검토할 수 있는 수직 여백 압축</p>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="section-device-side">
+											<div class="device-box pc-device" style="width: 100%;">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">ePMS Advanced Filter & Dense Grid View</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/epms_02.png" alt="고밀도 데이터 그리드 & 다중 필터">
+													<img src="./img/epms_02.png" alt="고밀도 데이터 그리드 & 다중 필터">
+													<img src="./img/epms_02.png" alt="고밀도 데이터 그리드 & 다중 필터">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="item" data-aos="zoom-in" onclick="openLayer('popup1')">
+						<div class="thumbnail"><div><img src="./img/drugsafe_thumb.png" alt="laiis"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">의약품안전정보관리시스템 통합 구축</p>
+							<p class="project-tags"><span class="tag">#React</span><span class="tag">#웹접근성</span><span class="tag">#반응형</span><span class="tag">#국,영문</span><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div id="popup1" class="pro-layer-popup">
+						<div class="popup-box">
+							<div class="popup-header">
+								<h3>한국의약품안전관리원 통합 구축</h3>
+								<button type="button" class="btn-close" onclick="closeLayer('popup1')">&times;</button>
+							</div>
+							<div class="popup-con">
+								<div class="desc-text">
+									<!-- <p>본 프로젝트는 의약품안전정보관리시스템의 통합 구축을 목표로, 관리자 화면 및 React 기반의 반응형 웹과 국·영문 다국어 지원 환경을 구현하였습니다.</p> -->
+									<p>의약품 안전정보 및 관련 서비스를 제공하는 대국민 포털 구축 프로젝트로, 국문 및 영문 웹사이트와 관리자 시스템 전반의 퍼블리싱을 수행했습니다.</p>
+									<p>로그인, 회원가입, DUR 정보, 의약품 부작용 피해구제, 마약류통합관리시스템(NIMS) 등 주요 서비스 화면을 포함하여 국문 107개, 영문 24개 등 총 131개 화면의 웹 퍼블리싱을 진행했습니다.</p>
+									<p>관리자 시스템 전반의 UI 디자인 및 퍼블리싱을 수행하고, 웹 접근성 품질인증 심사 대응과 개선 사항을 반영하여 웹 표준 및 접근성을 준수한 사용자 중심의 인터페이스를 구현했습니다.</p>
+								</div>
+								<div class="popup-preview-wrap">
+									<div class="preview-section">
+										<img src="./img/drugsafe_thumb.png">
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>내가 먹는 약의 DUR 정보</h3>
+											<p>국민이 복용 중인 여러 처방약과 일반의약품을 장바구니에 담아 병용금기, 중복처방, 특정연령 주의 정보를 종합적으로 검증하는 페이지입니다.</p>
+										</div>
+										<div class="section-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">KIDS-PP-US-DI-14 // 내가 먹는 약의 DUR 정보</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/drugsafe_01.png">
+												</div>
+											</div>
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/drugsafe_01_m.png">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>DUR 정보검색</h3>
+											<p>국민이 복용 중인 여러 처방약과 일반의약품을 장바구니에 담아 병용금기, 중복처방, 특정연령 주의 정보를 종합적으로 검증하는 페이지입니다.</p>
+										</div>
+										<div class="section-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">KIDS-PP-US-DI-03 // DUR 정보검색</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/drugsafe_02.png">
+												</div>
+											</div>
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/drugsafe_02_m.png">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>KIDS 관리자 통합관리시스템 — 권한별 메뉴</h3>
+											<p>화면설계서를 기반으로 다중 업무 시스템 간 상속 구조와 사용자 롤(Role) 조회 방식을 정의한 상세 설계 문서입니다.</p>
+										</div>
+										<div class="section-devices split-pc-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">KIDS-PP-AD-AU-01 // 권한별 메뉴</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/drugsafe_03_01.png">
+												</div>
+											</div>
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">KIDS-PP-AD-AU-01 // 권한별 메뉴</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/drugsafe_03_02.png">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+					<div class="item" data-aos="zoom-in" onclick="openLayer('popup2')">
+						<div class="thumbnail"><div><img src="./img/myhealthway_thumb.png"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">26년 건강정보 고속도로(본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</p>
+							<p class="project-tags"><span class="tag">#React</span><span class="tag">#웹접근성</span><span class="tag">#반응형</span><span class="tag">#퍼블리싱50%</span><span class="tag">#eXBuilder</span></p>
+						</div>
+					</div>
+					<div id="popup2" class="pro-layer-popup">
+						<div class="popup-box">
+							<div class="popup-header">
+								<h3>26년 건강정보 고속도로(본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</h3>
+								<button type="button" class="btn-close" onclick="closeLayer('popup2')">&times;</button>
+							</div>
+							<div class="popup-con">
+								<div class="desc-text">
+									<p>건강정보 고속도로 플랫폼의 데이터 제공 의료기관 확대 및 사용자 편의성 강화를 위한 기능 고도화 프로젝트입니다.</p>
+									<p>PC와 모바일 등 다양한 디바이스에 대응하는 반응형 웹 퍼블리싱을 수행했습니다.</p>
+									<p>EX빌더를 활용하여 관리자 업무 프로세스와 사용자 편의성을 고려한 신규 관리자 페이지 UI/UX를 구현하고, 효율적인 서비스 운영 및 관리를 위한 인터페이스를 구축했습니다.</p>
+								</div>
+								<div class="popup-preview-wrap">
+									<div class="preview-section">
+										<img src="./img/myhealthway_thumb.png">
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>건강정보고속도로 소개</h3>
+										</div>
+										<div class="section-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">서비스소개 > 건강정보고속도로 소개</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/myhealthway_01.png">
+												</div>
+											</div>
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/myhealthway_01_m.png">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>보호 및 활용</h3>
+										</div>
+										<div class="section-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">서비스소개 > 보호 및 활용</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/myhealthway_02.png">
+												</div>
+											</div>
+											<div class="device-box mobile-device">
+												<div class="mobile-inner-screen">
+													<div class="mobile-image-scroll-box">
+														<img src="./img/myhealthway_02_m.png">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+					<div class="item" data-aos="zoom-in" onclick="openLayer('popup3')">
+						<div class="thumbnail"><div><img src="./img/mohw_thumb.png"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">휴·폐업 의료기관 진료기록보관시스템 기능개선</p>
+							<p class="project-tags"><span class="tag">#웹접근성</span><span class="tag">#반응형</span><span class="tag">#퍼블리싱30%</span></p>
+						</div>
+					</div>
+					<div id="popup3" class="pro-layer-popup">
+						<div class="popup-box">
+							<div class="popup-header">
+								<h3>휴·폐업 의료기관 진료기록보관시스템 기능개선</h3>
+								<button type="button" class="btn-close" onclick="closeLayer('popup3')">&times;</button>
+							</div>
+							<div class="popup-con">
+								<div class="desc-text">
+									<p>시각·청각 등 다양한 장애 유형을 고려한 웹 접근성 개선과 반응형 퍼블리싱 최적화를 통해 사용자 접근성을 강화하고, 웹 접근성 품질인증 마크 획득을 위한 심사 기준을 충족했습니다.</p>
+								</div>
+								<div class="popup-preview-wrap">
+									<div class="preview-section">
+										<img src="./img/mohw_thumb.png">
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>진료기록 발급포털 (국민용 온라인 열람·발급): 휴·폐업 의료기관 진료기록 발급포털</h3>
+										</div>
+										<div class="section-devices wide-pc-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">휴·폐업 의료기관 진료기록 발급포털</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/mohw_01.png">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>진료기록보관시스템 (의료기관용 EMR 이관 및 관리): 휴·폐업 의료기관 진료기록보관시스템</h3>
+										</div>
+										<div class="section-devices wide-pc-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">휴·폐업 의료기관 진료기록보관시스템</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/mohw_02.png">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+					<div class="item" data-aos="zoom-in" onclick="openLayer('popup4')">
+						<div class="thumbnail"><div><img src="./img/myhealthway2025_thumb.png"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">25년 건강정보 고속도로(본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</p>
+							<p class="project-tags"><span class="tag">#React</span><span class="tag">#웹접근성</span><span class="tag">#반응형</span><span class="tag">#퍼블리싱50%</span><span class="tag">#eXBuilder</span></p>
+						</div>
+					</div>
+					<div id="popup4" class="pro-layer-popup">
+						<div class="popup-box">
+							<div class="popup-header">
+								<h3>25년 건강정보 고속도로(본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</h3>
+								<button type="button" class="btn-close" onclick="closeLayer('popup4')">&times;</button>
+							</div>
+							<div class="popup-con">
+								<div class="desc-text">
+									<p>건강정보 고속도로 플랫폼의 데이터 제공 의료기관 확대 및 사용자 편의성 향상을 위한 기능 고도화 프로젝트입니다.</p>
+									<p>서비스 접근성과 사용성 개선을 위한 주요 화면 리뉴얼 및 신규 페이지 퍼블리싱을 진행했으며, PC와 모바일 환경에 최적화된 반응형 웹을 구현했습니다.</p>
+									<p>웹 표준 및 웹 접근성 지침을 준수한 퍼블리싱을 통해 웹 접근성 품질인증 마크 획득을 완료했습니다.</p>
+								</div>
+								<div class="popup-preview-wrap">
+									<div class="preview-section">
+										<img src="./img/myhealthway2025_thumb.png">
+									</div>
+									<div class="preview-section">
+										<div class="section-desc">
+											<h3>메인화면 리뉴얼</h3>
+										</div>
+										<div class="section-devices wide-pc-devices">
+											<div class="device-box pc-device">
+												<div class="browser-top-bar">
+													<span class="dot red"></span>
+													<span class="dot yellow"></span>
+													<span class="dot green"></span>
+													<span class="browser-title">메인 화면 리뉴얼</span>
+												</div>
+												<div class="pc-image-scroll-box">
+													<img src="./img/myhealthway2025_01.png">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+					<div class="item" data-aos="zoom-in" onclick="openLayer('popup5')">
+						<div class="thumbnail"><div><img src="./img/epms_thumb.png"></div></div>
+						<div class="desc">
+							<span class="project-category">기업/일반</span>
+							<p class="project-title">현대건설 자산관리 플랫폼 구축</p>
+							<p class="project-tags"><span class="tag">#웹접근성</span><span class="tag">#반응형</span><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div id="popup5" class="pro-layer-popup">
+						<div class="popup-box">
+							<div class="popup-header">
+								<h3>현대건설 자산관리 플랫폼 구축</h3>
+								<button type="button" class="btn-close" onclick="closeLayer('popup5')">&times;</button>
+							</div>
+							<div class="popup-con">
+								<div class="desc-text">
+									<p>대시보드, Grid, CRUD, 체계적인 단 구분 레이아웃을 유기적으로 조합하여 복잡한 비즈니스 로직과 방대한 데이터를 직관적으로 탐색할 수 있는 기간계 시스템 화면을 구축했습니다.</p>
+								</div>
+								<div class="popup-preview-wrap">
+									<div class="preview-section">
+										<img src="./img/epms_thumb.png">
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					
+
+					<!-- <div class="item" data-aos="zoom-in" onclick="openProjectPopup('nanumkorea')">
+						<div class="thumbnail"><div><img src="./img/nanumkorea.jpg" alt="nanumkorea"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">1365 기부포털</p>
+							<p><span class="tag">#메인퍼블리싱</span> <span class="tag">#고도화</span> <span class="tag">#반응형</span></p>
+						</div>
+					</div>
+					
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('laiis')">
+						<div class="thumbnail"><div><img src="./img/laiis.jpg" alt="laiis"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">행정안전부 내고장알리미</p>
+							<p><span class="tag">#메인퍼블리싱</span> <span class="tag">#반응형</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://privacy.kisa.or.kr/main.do')">
+						<div class="thumbnail"><div><img src="./img/privacy.jpg" alt="gdpr"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA 개인정보침해신고센터</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#웹접근성</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://gdpr.kisa.or.kr/')">
+						<div class="thumbnail"><div><img src="./img/gdpr.jpg" alt="gdpr"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA GDPR 대응지원센터</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#웹접근성</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://ryusee.dothome.co.kr/itc/system/main.html')">
+						<div class="thumbnail"><div><img src="./img/ict.png" alt="ict"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">인천국제공항 안내방송설비 관제시스템</p>
+							<p><span class="tag">#관제시스템</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://cont.kait.or.kr/main.do')">
+						<div class="thumbnail"><div><img src="./img/kait.jpg" alt="KAIT 전자계약시스템"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA KAIT 전자계약시스템</p>
+							<p><span class="tag">#전자계약</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://usr.ecmc.or.kr/main.do')">
+						<div class="thumbnail"><div><img src="./img/ecmc.jpg" alt="ecmc"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA 전자문서 &middot;전자거래분쟁조정위원회</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#웹접근성</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('ecmc_admin')">
+						<div class="thumbnail"><div><img src="./img/ecmc_admin.jpg" alt="ecmc"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA 전자문서 &middot;전자거래분쟁조정위원회 관리자</p>
+							<p><span class="tag">#관리자시스템</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					
+
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('cjenm')">
+						<div class="thumbnail"><div><img src="./img/cjenm.png" alt="cjenm"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">CJENM</p>
+							<p><span class="tag">#미디어</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('cjenm_admin')">
+						<div class="thumbnail"><div><img src="./img/cjenm_admin.jpg" alt="cjenm"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">CJENM 관리자</p>
+							<p><span class="tag">#관리자시스템</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					
+					
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('vmsapp')">
+						<div class="thumbnail"><div><img src="./img/vmsapp.jpg" alt="한국사회복지협의회"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">APP 한국사회복지협의회</p>
+							<p><span class="tag">#모바일앱</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+		
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.vms.or.kr/main.do')">
+						<div class="thumbnail"><div><img src="./img/vms.jpg" alt="한국사회복지협의회"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">한국사회복지협의회</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#웹접근성</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://info.vms.or.kr/login.do')">
+						<div class="thumbnail"><div><img src="./img/vms_admin.jpg" alt="한국사회복지협의회 인증관리DB시스템"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">한국사회복지협의회 인증관리DB시스템</p>
+							<p><span class="tag">#DB시스템</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					
+					
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://privacy.go.kr/self/intro.do')">
+						<div class="thumbnail"><div><img src="./img/privacy.self.jpg" alt="개인정보보호 자율점검시스템"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA 개인정보보호 자율점검시스템</p>
+							<p><span class="tag">#자율점검</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.boho.or.kr/ciso/main.do')">
+						<div class="thumbnail"><div><img src="./img/ciso.jpg" alt="ciso 정보보호최고책임자"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA CISO 정보보호최고책임자</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.boho.or.kr/main.do')">
+						<div class="thumbnail"><div><img src="./img/boho.jpg" alt="KISA 인터넷 보호나라"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">KISA 인터넷 보호나라</p>
+							<p><span class="tag">#유지보수</span> <span class="tag">#보안포털</span></p>
+						</div>
+					</div>
+					
+
+					
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('yakvang')">
+						<div class="thumbnail"><div><img src="./img/yakvang.jpg" alt="약방"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">약방</p>
+							<p><span class="tag">#플랫폼</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+
+					
+
+					<div class="item" data-aos="zoom-in" onclick="openProjectPopup('ksecurity')">
+						<div class="thumbnail"><div><img src="./img/ksecurity.jpg" alt="정보보호클러스터(회의실예약시스템)"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">정보보호클러스터(회의실예약시스템)</p>
+							<p><span class="tag">#예약시스템</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://coaching.ck.ac.kr/main.do')">
+						<div class="thumbnail"><div><img src="./img/ck.coaching.jpg" alt="청강대 취업브리지멘토링"></div></div>
+						<div class="desc">
+							<span class="project-category">대학/학원</span>
+							<p class="project-title">청강대 취업브리지멘토링</p>
+							<p><span class="tag">#대학시스템</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://exp.ck.ac.kr/login.do')">
+						<div class="thumbnail"><div><img src="./img/ck.exp.jpg" alt="청강대 취업브리지멘토링"></div></div>
+						<div class="desc">
+							<span class="project-category">대학/학원</span>
+							<p class="project-title">청강대 현장실습관리시스템</p>
+							<p><span class="tag">#학사관리</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://ipsi.ssc.ac.kr/main/index.do')">
+						<div class="thumbnail"><div><img src="./img/ipsi.ssc.jpg" alt="수원과학대학교 입학홈페이지"></div></div>
+						<div class="desc">
+							<span class="project-category">대학/학원</span>
+							<p class="project-title">수원과학대학교 입학홈페이지</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#대학입학</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://iphakreal.ansan.ac.kr/main/index.do')">
+						<div class="thumbnail"><div><img src="./img/ansan.jpg" alt="안산대 입학홈페이지"></div></div>
+						<div class="desc">
+							<span class="project-category">대학/학원</span>
+							<p class="project-title">안산대 입학홈페이지</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#대학입학</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://iphakreal.ansan.ac.kr/main/index.do')">
+						<div class="thumbnail"><div><img src="./img/seogucul.jpg" alt="인천광역시 서구문화원"></div></div>
+						<div class="desc">
+							<span class="project-category">공공기관</span>
+							<p class="project-title">인천광역시 서구문화원</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#문화원</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+
+
+
+				
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.kci.or.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_koci.jpg" alt="한국콘크리트학회"></div></div>
+						<div class="desc">
+							<span class="project-category">학회/협회</span>
+							<p class="project-title">한국콘크리트학회</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#학회홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.unicoh.co.kr/kor/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_unicoh.jpg" alt="유니코정밀화학"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">유니코정밀화학</p>
+							<p><span class="tag">#기업사이트</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://frienpi.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_frienpi.jpg" alt="프렌피몰"></div></div>
+						<div class="desc">
+							<span class="project-category">쇼핑몰</span>
+							<p class="project-title">프렌피몰</p>
+							<p><span class="tag">#쇼핑몰</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://m.frienpi.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/mo_frienpi.jpg" alt="프렌피몰"></div></div>
+						<div class="desc">
+							<span class="project-category">쇼핑몰</span>
+							<p class="project-title">프렌피몰</p>
+							<p><span class="tag">#모바일웹</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.healcrete.re.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_healcrete.jpg" alt="프렌피몰"></div></div>
+						<div class="desc">
+							<span class="project-category">학회/협회</span>
+							<p class="project-title">자기치유친환경콘크리트연구센터</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#연구소</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+				
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.jeisys.com/2016/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_jeisys.jpg" alt="제이시스"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">제이시스</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#기업사이트</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+				
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.karc.or.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_koarc.jpg" alt="한국농수산재활용산업공제조합"></div></div>
+						<div class="desc">
+							<span class="project-category">학회/협회</span>
+							<p class="project-title">한국농수산재활용산업공제조합</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#조합홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.icptrailer.com/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_icptrailer.jpg" alt="아이씨피"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">아이씨피</p>
+							<p><span class="tag">#기업사이트</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.dwcmp.com/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_dwcmp.jpg" alt="대우컴프레셔"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">대우컴프레셔</p>
+							<p><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+
+			
+
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.foodi.com:6010/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_mcygclean.jpg" alt="보이는이사"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">보이는이사</p>
+							<p><span class="tag">#서비스플랫폼</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.foodi.com:6010/')">
+						<div class="thumbnail"><div><img src="./img/v1/mo_mcygclean.jpg" alt="보이는이사"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">보이는이사</p>
+							<p><span class="tag">#모바일웹</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://yeonje.hk-test.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_yeonje.jpg" alt="주)연제"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">주)연제</p>
+							<p><span class="tag">#기업사이트</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://ra75.hk-test.co.kr')">
+						<div class="thumbnail"><div><img src="./img/v1/web_ra75.jpg" alt="유창길한의원"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">유창길한의원</p>
+							<p><span class="tag">#병원홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+		
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://boramae.co/main.php')">
+						<div class="thumbnail"><div><img src="./img/v1/web_boramae.jpg" alt="보라매요양병원"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">보라매요양병원</p>
+							<p><span class="tag">#병원홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.i-dongwoo.com/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_dongwoo.jpg" alt="동우전기"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">동우전기</p>
+							<p><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.azwell.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_azwell.jpg" alt="에즈웰"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">에즈웰</p>
+							<p><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('https://www.sgcetec.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_etecenc.jpg" alt="이테크건설"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">이테크건설</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#건설사</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.majoronline.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_majoronline.jpg" alt="특허법인메이저"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">특허법인메이저</p>
+							<p><span class="tag">#반응형</span> <span class="tag">#특허법인</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://jjwhc.hk-test.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_jjwhc.jpg" alt="전주근로자건강센터"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">전주근로자건강센터</p>
+							<p><span class="tag">#건강센터</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.dongsungtcs.com/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_dongsungtcs.jpg" alt="동성tcs"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">동성tcs</p>
+							<p><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.e-nature.co.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_e-nature.jpg" alt="청담인한의원"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">청담인한의원</p>
+							<p><span class="tag">#병원홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.smile-line.co.kr/index.jsp')">
+						<div class="thumbnail"><div><img src="./img/v1/web_smile-line.jpg" alt="스마일라인치과"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">스마일라인치과</p>
+							<p><span class="tag">#병원홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.shomc.com/index.jsp')">
+						<div class="thumbnail"><div><img src="./img/v1/web_shomc.jpg" alt="상현한의원"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">상현한의원</p>
+							<p><span class="tag">#병원홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.timberlines.co.kr/index.jsp')">
+						<div class="thumbnail"><div><img src="./img/v1/web_timberlines.jpg" alt="팀버라인"></div></div>
+						<div class="desc">
+							<span class="project-category">일반</span>
+							<p class="project-title">팀버라인</p>
+							<p><span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.kmira.or.kr/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_kmira.jpg" alt="한국계측기기연구조합"></div></div>
+						<div class="desc">
+							<span class="project-category">학회/협회</span>
+							<p class="project-title">한국계측기기연구조합</p>
+							<p><span class="tag">#연구조합</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div>
+					<div class="item" data-aos="zoom-in" onclick="window.open('http://www.eutteummac.com/')">
+						<div class="thumbnail"><div><img src="./img/v1/web_eutteummac.jpg" alt="으뜸맥한의원"></div></div>
+						<div class="desc">
+							<span class="project-category">병원/의료</span>
+							<p class="project-title">으뜸맥한의원</p>
+							<p><span class="tag">#병원홈페이지</span> <span class="tag">#퍼블리싱100%</span></p>
+						</div>
+					</div> -->
+
+					<!-- <div class="category-title public">공공기관</div>
+					<div class="category-title nonprofit">협회/학회/단체</div>
+					<div class="category-title finance">금융</div>
+					<div class="category-title business">기업/일반</div>
+					<div class="category-title medical">병원/의료</div>
+					<div class="category-title education">교육기관</div> -->
+
+				</div>
+			</div>
+			<!-- //content -->
+		</div>
+		<!-- //section -->
+
+		<div class="section section-inventory">
+			<div class="content">
+				<div class="section-heading">
+					<p class="section-kicker">TIMELINE ARCHIVE</p>
+					<h2>프로젝트 이력</h2>
+					<p class="description">클릭시 시안을 확인할 수 있습니다.</p>
+				</div>
+				<div class="timeline-list">
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2026</span>
+						</div>
+						<div class="project-list-type02">
+							<div class="project-item" onclick="openProjectPopup('의약품안전정보관리시스템')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">의약품안전정보관리시스템 통합 구축</p>
+								<div class="tech-list">
+									<span class="tech">React</span>
+									<span class="tech">Figma</span>
+									<span class="tech">반응형웹</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('26년건강정보고속도로')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">26년 건강정보 고속도로(본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</p>
+								<div class="tech-list">
+									<span class="tech">Figma</span>
+									<span class="tech">반응형웹</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+
+							<div class="project-item">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">2026년 본인진료기록열람지원시스템 (건강정보 고속도로) 운영 및 유지관리 사업</p>
+								<div class="tech-list">
+									<span class="tech">반응형웹</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+
+							<div class="project-item">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">2026년 휴·폐업 의료기관 진료기록보관시스템 기능개선</p>
+								<div class="tech-list">
+									<span class="tech">반응형웹</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+						</div>
+							
+					</article>
+
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2025</span>
+						</div>
+						<div class="project-list-type02">
+							<div class="project-item">
+								<div class="category-title medical">병원/의료</div>
+								<p class="project-name">지역중심 마이데이터 기술/생태계 실증(부산대병원)</p>
+								<div class="tech-list">
+									<span class="tech">HTML</span>
+									<span class="tech">Figma</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('25년건강정보고속도로')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">25년 건강정보 고속도로 (본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</p>
+								<div class="tech-list">
+									<span class="tech">반응형</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('25년휴‧폐업')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">2025년 휴‧폐업 의료기관 진료기록보관시스템 기능개선</p>
+								<div class="tech-list">
+									<span class="tech">반응형</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2024</span>
+						</div>
+						<div class="project-list-type02">
+							<div class="project-item" onclick="openProjectPopup('24년건강정보고속도로')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">24년 건강정보 고속도로 (본인진료기록열람지원시스템) 데이터 제공 의료기관 확산 및 기능 고도화 사업</p>
+								<div class="tech-list">
+									<span class="tech">HTML</span>
+									<span class="tech">Figma</span>
+									<span class="tech">웹접근성</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('현대건설')">
+								<div class="category-title business">기업/일반</div>
+								<p class="project-name">현대건설 자산관리 플랫폼 구축</p>
+								<div class="tech-list">
+									<span class="tech">Git</span>
+									<span class="tech">Figma</span>
+									<span class="period">2024.06 ~ 2024.09</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('한국은행위조화폐관리시스템')">
+								<div class="category-title finance">금융</div>
+								<p class="project-name">한국은행 위조화폐관리시스템 개선 사업</p>
+								<div class="tech-list">
+									<span class="tech">Git</span>
+									<span class="tech">Figma</span>
+									<span class="period">2024.02 ~ 2024.03</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('국회홈페이지통합서비스홈페이지개선사업')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">국회홈페이지 통합서비스 확충 및 노후 홈페이지 개선사업</p>
+								<div class="tech-list">
+									<span class="tech">Git</span>
+									<span class="tech">Figma</span>
+									<span class="tech">웹접근성</span>
+									<span class="period">2024.01 ~ 2024.04</span>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2023</span>
+						</div>
+						<div class="project-list-type02">
+							<div class="project-item">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">COTIS 논플러그인 전환개발 용역 (한국토지주택공사)</p>
+								<div class="tech-list">
+									<span class="tech">xframe</span>
+									<span class="period">2023.09 ~ 2023.12</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('USG코딩오픈메타캠퍼스통합플랫폼SW시스템구축')">
+								<div class="category-title business">기업/일반</div>
+								<p class="project-name">USG코딩오픈메타캠퍼스통합플랫폼SW시스템구축</p>
+								<div class="tech-list">
+									<span class="tech">Eclipse SVN</span>
+									<span class="tech">Figma</span>
+									<span class="period">2023.05 ~ 2023.08</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('한국은행금융경제스냅샷')">
+								<div class="category-title finance">금융</div>
+								<p class="project-name">한국은행 금융• 경제 스냅샷</p>
+								<div class="tech-list">
+									<span class="tech">Git</span>
+									<span class="tech">Figma</span>
+									<span class="period">2023.03 ~ 2023.03</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('국회홈페이지국회입법예고')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">국회홈페이지 통합서비스 확충 및 노후 홈페이지 개선사업 &amp; 국회입법예고 개선사업</p>
+								<div class="tech-list">
+									<span class="tech">Eclipse SVN</span>
+									<span class="tech">Figma</span>
+									<span class="tech">웹접근성</span>
+									<span class="period">2023.02 ~ 2023.03</span>
+								</div>
+							</div>
+						</div>
+					</article>
+
+
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2022</span>
+						</div>
+						<div class="project-list-type02">
+							<div class="project-item">
+								<div class="category-title business">기업/일반</div>
+								<p class="project-name">월드비전 웹사이트 리뉴얼 및 고도화 프로젝트</p>
+								<div class="tech-list">
+									<span class="tech">Eclipse SVN</span>
+									<span class="tech">Figma</span>
+									<span class="period">2022.10 ~ 2022.12</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('신한은행')">
+								<div class="category-title finance">금융</div>
+								<p class="project-name">신한은행 기업비대면채널 전면개편 퍼블리싱</p>
+								<div class="tech-list">
+									<span class="tech">웹스퀘어</span>
+									<span class="tech">Figma</span>
+									<span class="tech">웹접근성</span>
+									<span class="period">2022.01 ~ 2022.09</span>
+								</div>
+							</div>
+						</div>
+					</article>
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2021</span>
+						</div>
+
+						<div class="project-list-type02">
+							<div class="project-item">
+								<div class="category-title finance">금융</div>
+								<p class="project-name">하나캐피탈 디지털 채널 버전업 구축 프로젝트</p>
+								<div class="tech-list">
+									<span class="tech">Eclipse SVN</span>
+									<span class="tech">Figma</span>
+									<span class="period">2021.10 ~ 2021.12</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('1365')">
+								<div class="category-title public">공공기관</div>
+								<p class="project-name">1365 자원봉사 · 기부통합관리 및 합동평가 유지관리 사업</p>
+								<div class="tech-list">
+									<span class="tech">Eclipse SVN</span>
+									<span class="tech">Photoshop</span>
+									<span class="tech">웹접근성</span>
+									<span class="period">2021.06 ~ 2021.08</span>
+								</div>
+							</div>
+
+							<div class="project-item" onclick="openProjectPopup('약방 플랫폼')">
+								<div class="category-title business">기업/일반</div>
+								<p class="project-name">약방 플랫폼</p>
+								<div class="tech-list">
+									<span class="tech">Edit Plus</span>
+									<span class="tech">Figma</span>
+									<span class="tech">Zeplin</span>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2020</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">공공기관</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('KISA 프라이버시 클린서비스')">
+									<p class="project-name">KISA 프라이버시 클린서비스</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('KISA 보호나라 CISO')">
+									<p class="project-name">KISA 보호나라 CISO</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('KISA ECMC 전자거래분쟁조정 지원시스템')">
+									<p class="project-name">KISA ECMC 전자거래분쟁조정 지원시스템</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title nonprofit">협회/학회/단체</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('VMS 사회복지자원봉사 인증관리시스템 웹앱 구축')">
+									<p class="project-name">VMS 사회복지자원봉사 인증관리시스템 웹앱 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Adobe XD</span>
+										<span class="tech">Zeplin</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title education">교육</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('청강문화산업대학교 취업브리지 멘토링 홈페이지 기능개선')">
+									<p class="project-name">청강문화산업대학교 취업브리지 멘토링 홈페이지 기능개선</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+									</div>
+								</div>
+
+								<div class="project-item">
+									<p class="project-name">청강문화산업대학교 현장실습시스템 기능개선</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('청강문화산업대학교 학생상담센터')">
+									<p class="project-name">청강문화산업대학교 학생상담센터</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title business">기업/일반</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('CJ 러닝 플랫폼 개발 SSO연동')">
+									<p class="project-name">CJ 러닝 플랫폼 개발 SSO연동</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Figma</span>
+										<span class="tech">Zeplin</span>
+									</div>
+								</div>
+
+								<div class="project-item">
+									<p class="project-name">타타대우 TOSS 고객관리시스템</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+					</article>
+
+
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2019</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">공공기관</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('KISA 전자서명인증관리센터')">
+									<p class="project-name">KISA 전자서명인증관리센터 홈페이지 개선</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('KISA 개인정보보호 자율점검 지원시스템')">
+									<p class="project-name">KISA 개인정보보호 자율점검 지원시스템 운영 관리 및 기능 개선</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('KISA GDPR')">
+									<p class="project-name">KISA GDPR 홈페이지 개편 및 자가진단도구 개발</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('KISA 개인정보침해 신고센터')">
+									<p class="project-name">KISA 개인정보침해 신고센터 홈페이지 전면 개편 및 신규기능 개발</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title nonprofit">협회/학회/단체</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('KAIT 전자 제안평가 시스템')">
+									<p class="project-name">KAIT 전자 제안평가 시스템 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title education">교육</div>
+							<div class="project-list-type02">
+								<div class="project-item">
+									<p class="project-name">제주대학교 정보통신원, 모바일 수업도우미 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+					</article>
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2018</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">공공기관</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('KISA 개인정보보호 국제협력센터')">
+									<p class="project-name">KISA 개인정보보호 국제협력센터 홈페이지 개편</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('인천공항공사')">
+									<p class="project-name">인천공항공사 대상 시스템 표출화면 UI 구축 및 관리자 모드</p>
+									<div class="tech-list">
+										<span class="tech">Edit Plus</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+
+								<div class="project-item">
+									<p class="project-name">NIPA 평가위원 POOL 전문분야 재분류 및 정보 현행화 용역</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('KISA 정보보호 클러스터 회의실 예약')">
+									<p class="project-name">KISA 정보보호 클러스터 회의실 예약</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+
+								<div class="project-item">
+									<p class="project-name">KISA 개인정보보호 자율점검 지원시스템 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item" onclick="openProjectPopup('중앙선거관리위원회')">
+									<p class="project-name">중앙선거관리위원회 정당보조금 배분예상액 조회 및 기능개선</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Edit Plus</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title education">교육</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('안산대 입학홈페이지')">
+									<p class="project-name">안산대 입학홈페이지 시스템 구축 사업</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+										<span class="tech">반응형웹</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+
+								<div class="project-item">
+									<p class="project-name">안산대 통합로그인시스템 SSO 고도화 사업</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+					</article>
+
+
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2017</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">공공기관</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('한국사회복지협의회')">
+									<p class="project-name">한국사회복지협의회 홈페이지 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+										<span class="tech">웹접근성</span>
+									</div>
+								</div>
+								<div class="project-item" onclick="openProjectPopup('한국사회복지협의회 인증관리DB시스템')">
+									<p class="project-name">한국사회복지협의회 인증관리DB시스템</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title nonprofit">협회/학회/단체</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('인천서구문화원')">
+									<p class="project-name">인천서구문화원 홈페이지 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+								<div class="project-item">
+									<p class="project-name">서울예술단 회원관리 개발</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title education">교육</div>
+							<div class="project-list-type02">
+								<div class="project-item" onclick="openProjectPopup('수원과학대학교')">
+									<p class="project-name">수원과학대학교 종합정보시스템(H/W, S/W) 및 기타 전산자원 홈페이지</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title business">기업/일반</div>
+							<div class="project-list-type02">
+								<div class="project-item">
+									<p class="project-name">강화도 온라인 역사탐방 고(古)지도 홈페이지 제작</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+								<div class="project-item" onclick="openProjectPopup('삼성 디지털 사이니지')">
+									<p class="project-name">삼성 디지털 사이니지 CMS 구축</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+								<div class="project-item" onclick="openProjectPopup('IXIA')">
+									<p class="project-name">IXIA ThreatARMOR 로그분석 시스템</p>
+									<div class="tech-list">
+										<span class="tech">Eclipse SVN</span>
+										<span class="tech">Photoshop</span>
+									</div>
+								</div>
+								<div class="project-item" onclick="openProjectPopup('더레이스코리아')">
+									<p class="project-name">더레이스코리아</p>
+								</div>
+							</div>
+						</section>
+					</article>
+
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2016</span>
+							<span class="part">참여도 100%</span>
+						</div>
+						<section class="project-category">
+							<div class="category-title nonprofit">협회/학회/단체</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('한국순환자원유통지원센터')"><p class="project-name">한국순환자원유통지원센터(반응형)</p></li>
+								<li onclick="openProjectPopup('한국스마트그리드사업단')"><p class="project-name">한국스마트그리드사업단</p></li>
+								<li onclick="openProjectPopup('한국농수산재활용사업공제조합')"><p class="project-name">한국농수산재활용사업공제조합</p></li>
+								<li onclick="openProjectPopup('한국산업간호협회')"><p class="project-name">한국산업간호협회</p></li>
+								<li onclick="openProjectPopup('한국콘트리트학회')"><p class="project-name">한국콘트리트학회(반응형)</p></li>
+							</ul>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title business">기업/일반</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('영구크린2016')"><p class="project-name">영구크린(반응형)</p></li>
+								<li onclick="openProjectPopup('제이시스')"><p class="project-name">제이시스(반응형)</p></li>
+								<li onclick="openProjectPopup('프렌피몰')"><p class="project-name">프렌피몰(반응형)</p></li>
+								<li onclick="openProjectPopup('한국식품정보원')"><p class="project-name">한국식품정보원</p></li>
+								<li onclick="openProjectPopup('청원바이오텍')"><p class="project-name">청원바이오텍</p></li>
+								<li onclick="openProjectPopup('대우컴프레셔')"><p class="project-name">대우컴프레셔</p></li>
+								<li onclick="openProjectPopup('동우전기')"><p class="project-name">동우전기</p></li>
+								<li onclick="openProjectPopup('아이캔디')"><p class="project-name">아이캔디</p></li>
+								<li onclick="openProjectPopup('에즈웰')"><p class="project-name">에즈웰(반응형)</p></li>
+								<li onclick="openProjectPopup('케이엔알컴퍼니')"><p class="project-name">케이엔알컴퍼니</p></li>
+								<li onclick="openProjectPopup('자기치유콘크리트연구센터')"><p class="project-name">자기치유콘크리트연구센터(반응형)</p></li>
+							</ul>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title medical">병원/의료</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('아이소망')"><p class="project-name">아이소망(반응형)</p></li>
+								<li onclick="openProjectPopup('유창길한의원')"><p class="project-name">유창길한의원</p></li>
+								<li onclick="openProjectPopup('보라매요양병원')"><p class="project-name">보라매요양병원</p></li>
+								<li onclick="openProjectPopup('전주근로자건강센터')"><p class="project-name">전주근로자건강센터</p></li>
+							</ul>
+						</section>
+					</article>
+
+
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2015</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">기업/일반</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('이테크')"><p class="project-name">이테크(반응형)</p></li>
+								<li onclick="openProjectPopup('하우시드')"><p class="project-name">하우시드</p></li>
+								<li onclick="openProjectPopup('아이씨피')"><p class="project-name">아이씨피(반응형)</p></li>
+								<li onclick="openProjectPopup('유니코')"><p class="project-name">유니코(반응형)</p></li>
+								<li onclick="openProjectPopup('파온스크린')"><p class="project-name">파온스크린</p></li>
+								<li onclick="openProjectPopup('케이디베딩시스템')"><p class="project-name">케이디베딩시스템</p></li>
+								<li onclick="openProjectPopup('도하인더스트리')"><p class="project-name">도하인더스트리</p></li>
+								<li onclick="openProjectPopup('삼청각')"><p class="project-name">삼청각</p></li>
+								<li><p class="project-name">동성화학</p></li>
+								<li><p class="project-name">동성화학역사관</p></li>
+								<li><p class="project-name">디에스신코</p></li>
+								<li onclick="openProjectPopup('엔톡')"><p class="project-name">엔톡</p></li>
+								<li onclick="openProjectPopup('브레인스톰')"><p class="project-name">브레인스톰</p></li>
+								<li onclick="openProjectPopup('특허법인메이저')"><p class="project-name">특허법인메이저</p></li>
+								<li onclick="openProjectPopup('트리니티엔지니어링')"><p class="project-name">트리니티엔지니어링</p></li>
+							</ul>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title medical">병원/의료</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('브라운성형외과')"><p class="project-name">브라운성형외과</p></li>
+								<li onclick="openProjectPopup('리에스여성의원')"><p class="project-name">리에스여성의원</p></li>
+								<li onclick="openProjectPopup('박재우성형외과')"><p class="project-name">박재우성형외과</p></li>
+								<li onclick="openProjectPopup('연세이라인치과')"><p class="project-name">연세이라인치과</p></li>
+							</ul>
+						</section>
+					</article>
+
+					
+				
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2014</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">기업/일반</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('비젠소프트')"><p class="project-name">비젠소프트</p></li>
+								<li onclick="openProjectPopup('교세라도큐먼트솔루션스코리아')"><p class="project-name">교세라도큐먼트솔루션스코리아(내부 ERP 시스템)</p></li>
+								<li onclick="openProjectPopup('태성에스앤이')"><p class="project-name">태성에스앤이</p></li>
+								<li onclick="openProjectPopup('예일디자인그룹')"><p class="project-name">예일디자인그룹</p></li>
+								<li onclick="openProjectPopup('꿈꾸는 달팽이')"><p class="project-name">꿈꾸는 달팽이(웹접근성)</p></li>
+								<li onclick="openProjectPopup('서남의대총동문회')"><p class="project-name">서남의대총동문회</p></li>
+								<li onclick="openProjectPopup('세라젬')"><p class="project-name">세라젬</p></li>
+								<li onclick="openProjectPopup('대한당구연맹')"><p class="project-name">대한당구연맹</p></li>
+								<li onclick="openProjectPopup('휴젤파마')"><p class="project-name">휴젤파마</p></li>
+								<li onclick="openProjectPopup('온누리이부자리')"><p class="project-name">온누리이부자리</p></li>
+								<li onclick="openProjectPopup('샴페인')"><p class="project-name">샴페인</p></li>
+								<li onclick="openProjectPopup('교세라')"><p class="project-name">교세라</p></li>
+								<li onclick="openProjectPopup('다이나믹모션')"><p class="project-name">다이나믹모션</p></li>
+								<li onclick="openProjectPopup('소망수양관')"><p class="project-name">소망수양관</p></li>
+								<li onclick="openProjectPopup('jux어린이체험관')"><p class="project-name">jux어린이체험관</p></li>
+								<li><p class="project-name">바딕텍메드</p></li>
+							</ul>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title medical">병원/의료</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('청담한의원')"><p class="project-name">청담한의원</p></li>
+								<li onclick="openProjectPopup('신촌연세병원')"><p class="project-name">신촌연세병원(웹접근성)</p></li>
+								<li onclick="openProjectPopup('티엘성형외과')"><p class="project-name">티엘성형외과</p></li>
+								<li onclick="openProjectPopup('vip동물병원')"><p class="project-name">vip동물병원</p></li>
+								<li onclick="openProjectPopup('더씨엘')"><p class="project-name">더씨엘</p></li>
+								<li onclick="openProjectPopup('코리아페이스치과')"><p class="project-name">코리아페이스치과</p></li>
+								<li onclick="openProjectPopup('청이한의원')"><p class="project-name">청이한의원</p></li>
+								<li onclick="openProjectPopup('노블리안 치과')"><p class="project-name">노블리안 치과</p></li>
+								<li onclick="openProjectPopup('더봄한의원')"><p class="project-name">더봄한의원(웹접근성)</p></li>
+								<li onclick="openProjectPopup('하늘성형외과')"><p class="project-name">하늘성형외과</p></li>
+								<li onclick="openProjectPopup('연세사랑모아산부인과')"><p class="project-name">연세사랑모아산부인과</p></li>
+								<li onclick="openProjectPopup('세린산부인과')"><p class="project-name">세린산부인과</p></li>
+								<li onclick="openProjectPopup('mvp성형외과')"><p class="project-name">mvp성형외과(웹접근성)</p></li>
+								<li onclick="openProjectPopup('양두병성형외과')"><p class="project-name">양두병성형외과</p></li>
+								<li><p class="project-name">부천우리병원</p></li>
+								<li><p class="project-name">으뜸백한의원</p></li>
+								<li><p class="project-name">나란이치과</p></li>
+								<li><p class="project-name">밸런스미클리닉</p></li>
+								<li><p class="project-name">길흉부외과</p></li>
+								<li><p class="project-name">내추럴치과</p></li>
+								<li><p class="project-name">서울성모안과</p></li>
+							</ul>
+						</section>
+					</article>
+
+
+					
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2013</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title public">기업/일반</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('여행기쁨')"><p class="project-name">여행기쁨</p></li>
+								<li onclick="openProjectPopup('청춘감성')"><p class="project-name">청춘감성</p></li>
+								<li onclick="openProjectPopup('경주시사회복지협의회')"><p class="project-name">경주시사회복지협의회</p></li>
+								<li onclick="openProjectPopup('홈스테이인코리아')"><p class="project-name">홈스테이인코리아</p></li>
+								<li onclick="openProjectPopup('국민오페라단')"><p class="project-name">국민오페라단</p></li>
+								<li onclick="openProjectPopup('mbc미술센터')"><p class="project-name">mbc미술센터</p></li>
+								<li onclick="openProjectPopup('인터케어')"><p class="project-name">인터케어</p></li>
+								<li onclick="openProjectPopup('바디텍메드')"><p class="project-name">바디텍메드</p></li>
+								<li onclick="openProjectPopup('정선생')"><p class="project-name">정선생</p></li>
+								<li onclick="openProjectPopup('영구크린')"><p class="project-name">영구크린</p></li>
+								<li><p class="project-name">비쥬얼컴퍼니엘엔씨</p></li>
+								<li><p class="project-name">한국계측기기연구조합</p></li>
+							</ul>
+						</section>
+
+						<section class="project-category">
+							<div class="category-title medical">병원/의료</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('디아트치과')"><p class="project-name">디아트치과</p></li>
+								<li onclick="openProjectPopup('바이스치과')"><p class="project-name">바이스치과</p></li>
+								<li onclick="openProjectPopup('새봄피부과')"><p class="project-name">새봄피부과</p></li>
+								<li onclick="openProjectPopup('더봄한의원2013')"><p class="project-name">더봄한의원(웹접근성)</p></li>
+								<li onclick="openProjectPopup('더클래식성형외과')"><p class="project-name">더클래식성형외과</p></li>
+								<li onclick="openProjectPopup('바름메디')"><p class="project-name">바름메디</p></li>
+								<li onclick="openProjectPopup('JC빛소망안과')"><p class="project-name">JC빛소망안과</p></li>
+								<li onclick="openProjectPopup('연세올리브치과')"><p class="project-name">연세올리브치과</p></li>
+								<li onclick="openProjectPopup('프로필성형외과')"><p class="project-name">프로필성형외과</p></li>
+								<li onclick="openProjectPopup('경희궁의봄 한의원')"><p class="project-name">경희궁의봄 한의원</p></li>
+								<li><p class="project-name">맑은하늘피부과</p></li>
+								<li><p class="project-name">경희봄한의원</p></li>
+								<li><p class="project-name">에이디엔노뜨</p></li>
+							</ul>
+						</section>
+					</article>
+					<article class="timeline-item">
+						<div class="timeline-info">
+							<span class="year">2012</span>
+							<span class="part">참여도 100%</span>
+						</div>
+
+						<section class="project-category">
+							<div class="category-title medical">병원/의료</div>
+							<ul class="project-list-type01">
+								<li onclick="openProjectPopup('티엘성형외과2012')">
+									<p class="project-name">티엘성형외과</p>
+								</li>
+							</ul>
+						</section>
+					</article>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //container -->
+
+	<footer class="section section-contact">
+		<div class="content">
+			<div class="closing-message">
+				<p>디자인과 개발을 연결하며, <strong>더 나은 웹 경험</strong>을 만들어 가겠습니다.</p>
+			</div>
+			<h2>CONNECT</h2>
+			<address class="contact-info">
+				<p class="t1"><span>E-MAIL :</span> <a href="mailto:ryuryujie@naver.com">ryuryujie@naver.com</a></p>
+				<p class="t1"><span>PHONE :</span> <a href="tel:01038911849">010.3891.1849</a></p>
+			</address>
+			<p class="copyright">COPYRIGHT 2026© RJE ALL RIGHTS RESERVED</p>
+		</div>
+	</footer>
+
+</div>
+<!-- //wrap -->
+
+<!-- 공용 레이어 팝업 -->
+<div id="common-popup" class="modal layer-popup">
+    <div class="popup-content popup-content-st2">
+        <p class="t1"><span id="modal-title">프로젝트명</span> <span>일부페이지만 표시됩니다.</span></p>
+        <div class="pic" id="modal-img-container">
+        </div>
+    </div>
+</div>
+
+<script src="./js/aos.js"></script>
+<script>
+  AOS.init({
+	easing: 'ease-in-out-sine'
+  });
+</script>
+<script src="./js/project-popup.js"></script>
+
+
+</body>
+</html>
