@@ -1,0 +1,23 @@
+@charset "utf-8";
+@import url(font.css);
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0}
+body,h1,h2,h3,h4,input,button{font-family:'NotoSansKR','맑은 고딕', 'Malgun Gothic','돋움',Dotum,Helvetica,'Apple SD Gothic Neo',Sans-serif;font-size:13px;color:#121212;}
+body{text-align:left; word-break:break-word;}
+img,fieldset,iframe{border:0 none}
+li{list-style:none}
+input,select,button{vertical-align:middle}
+img{vertical-align:middle}
+i,em,address{font-style:normal}
+label,button{cursor:pointer}
+a{color:#121212;text-decoration:none}
+a:hover{color:#121212;text-decoration:none}
+hr{display:none}
+table{table-layout:fixed;border-collapse:collapse;border-spacing:0}
+h1{font-weight:normal;}
+h2{font-weight:normal;}
+h3{font-weight:normal;}
+h4{font-weight:normal;}
+h5{font-weight:normal;}
+h6{font-weight:normal;}
+caption, legend, .hidden{visibility:hidden;position:absolute;left:-9999em;width:1px;height:1px;margin:0;padding:0;background:none;font-size:0;line-height:0;text-indent:-9999em} 
+
