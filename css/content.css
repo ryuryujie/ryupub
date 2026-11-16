@@ -2,22 +2,22 @@
 @import url(font.css);
 
 :root {
-    --primary-color: #2878D4;
-    --primary-dark: #185BB0;
-    --primary-light: #69A7F0;
+--primary-color: #46546A;
+--primary-dark: #29364A;
+--primary-light: #8993A1;
 
-    --bg-light: #F3F8FF;
-    --bg-white: #FFFFFF;
+--bg-light: #F5F4F0;
+--bg-white: #FFFFFF;
 
-    --text-main: #172B45;
-    --text-dark: #233B58;
-    --text-muted: #687D96;
+--text-main: #303844;
+--text-dark: #29364A;
+--text-muted: #7F8792;
 
-    --border-color: #DFEAF7;
+--border-color: #E5E3DC;
 
-    --keyword-bg: #EAF3FF;
-    --keyword-color: #2878D4;
-    --keyword-border: #CFE2FA;
+--keyword-bg: #F0F0ED;
+--keyword-color: #566174;
+--keyword-border: #E0E1DC;
 
     --font-11: 11px;
     --font-12: 12px;
@@ -226,7 +226,7 @@ html, body {width: 100%;height: 100%;}
 .pro-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; clear: both; }
 .pro-list .item { display: flex; flex-direction: column; align-items: stretch; overflow: hidden; position: relative; width: 100%; margin: 0; box-sizing: border-box; text-align: left; background: var(--bg-white, #fff); cursor: pointer; border: 1px solid var(--border-color, #e2e8f0); border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2; }
 .pro-list .item:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -4px rgba(0, 0, 0, 0.08); border-color: var(--primary-color, #3b82f6); }
-.pro-list .thumbnail { overflow: hidden; position: relative; width: 100%; aspect-ratio: 16 / 10; border-right: none; border-bottom: 1px solid var(--border-color, #e2e8f0); display: flex; align-items: center; justify-content: center; background-color: #f8fafc; flex-shrink: 0; }
+.pro-list .thumbnail { overflow: hidden; position: relative; width: 100%; aspect-ratio: 16 / 9; border-right: none; border-bottom: 1px solid var(--border-color, #e2e8f0); display: flex; align-items: center; justify-content: center; background-color: #f8fafc; flex-shrink: 0; }
 .pro-list .thumbnail > div { width: 100%; height: 100%; }
 .pro-list .item img { width: 100%; height: 100%; object-fit: contain; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-left-radius: 0; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 .pro-list .item:hover img { transform: scale(1.05); }
@@ -301,7 +301,7 @@ html, body {width: 100%;height: 100%;}
 
 .section-inventory .category-title.public     { background: #DBEAFE; color: #1D4ED8; }
 .section-inventory .category-title.nonprofit  { background: #FCE7F3; color: #BE185D; }
-.section-inventory .category-title.finance    { background: #E0E7FF; color: #4338CA; }
+.section-inventory .category-title.finance    { background: #F3E8FF; color: #7E22CE; }
 .section-inventory .category-title.business   { background: #E2E8F0; color: #334155; }
 .section-inventory .category-title.medical    { background: #DCFCE7; color: #15803D; }
 .section-inventory .category-title.education  { background: #FEF3C7; color: #B45309; }
@@ -316,8 +316,7 @@ html, body {width: 100%;height: 100%;}
 .section-inventory .project-list-type01 li[onclick]:hover { background: #eaf2ff; box-shadow: 0 5px 14px rgba(15, 23, 42, 0.05); transform: translateY(-2px); }
 
 .section-inventory .project-list-type02 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;  margin: 20px 0 40px 0; }
-.section-inventory .project-list-type02 .category-title{margin-bottom:10px;}
-.section-inventory .project-category:last-of-type .project-list-type02 { margin-bottom: 0; }
+.section-inventory .project-list-type02  .category-title {margin:0 0 10px 0;}
 .section-inventory .project-item { position: relative; min-width: 0; padding: 22px 20px; background: #f5f7fa; border: 1px solid transparent; border-radius: 8px; box-shadow: none; transition: all 0.25s ease; }
 .section-inventory .project-item p { position: relative; margin: 0; font-size: 15px; line-height: 1.65; font-weight: 600; color: #94a3b8; word-break: keep-all; }
 .section-inventory .project-item[onclick] { cursor: pointer; }
